@@ -5,19 +5,38 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint",
+    "unit": "jest"
   },
   "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11"
+    "babel-core": "7.0.0-bridge.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-upgrade": "^1.0.1",
+    "core-js": "^3.19.0",
+    "element-ui": "^2.4.5",
+    "jest": "^27.3.1",
+    "uuid": "^8.3.2",
+    "vue": "^2.6.11",
+    "vue-jest": "^3.0.7",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@types/jest": "^27.0.2",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-unit-jest": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "@vue/test-utils": "^1.0.3",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.3.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "jest-environment-jsdom-fifteen": "^1.0.2",
+    "vue-cli-plugin-element": "~1.0.1",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -32,11 +51,39 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {},
+    "overrides": [
+      {
+        "files": [
+          "**/__tests__/*.{j,t}s?(x)",
+          "**/tests/unit/**/*.spec.{j,t}s?(x)"
+        ],
+        "env": {
+          "jest": true
+        }
+      }
+    ]
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.(js)$": "babel-jest",
+      ".*\\.(vue)$": "vue-jest"
+    }
+  }
 }
